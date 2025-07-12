@@ -6,7 +6,6 @@ import { Eye, EyeOff, Mail, Lock, Loader2 } from "lucide-react"
 import type { LoginFormData } from "../schema/schema"
 import { authAPI } from "@/services/api"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 
 
 interface LoginFormProps {
@@ -78,7 +77,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onSwitchToRegister }) 
           </div>
 
           {/* Password Input */}
-          <div className="relative flex items-center mx-10">
+          <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Lock className="h-5 w-5 text-gray-400" />
             </div>
@@ -112,7 +111,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onSwitchToRegister }) 
           </div>
 
           {/* Sign In Button */}
-          <Button
+          <button
             type="submit"
             disabled={isLoading}
             className="w-full bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-600 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
@@ -125,7 +124,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onSwitchToRegister }) 
             ) : (
               "Sign In"
             )}
-          </Button>
+          </button>
 
          
         </form>

@@ -8,7 +8,6 @@ import { authAPI } from "@/services/api"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
-
 interface RegisterFormProps {
   onSuccess: (token: string) => void
   onSwitchToLogin: () => void
@@ -57,7 +56,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev: any) => ({
+    setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }))
@@ -68,14 +67,16 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-         
-
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Create Account!</h1>
           <p className="text-gray-600">Join us and start your journey</p>
         </div>
 
         {/* Error Message */}
-        {error && <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">{error}</div>}
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+            {error}
+          </div>
+        )}
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -100,7 +101,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Mail className="h-5 w-5 text-gray-400" />
             </div>
-            <input
+            <Input
               type="email"
               name="email"
               placeholder="Enter email"
@@ -116,7 +117,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Lock className="h-5 w-5 text-gray-400" />
             </div>
-            <input
+            <Input
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Password"
@@ -131,9 +132,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
               className="absolute inset-y-0 right-0 pr-3 flex items-center"
             >
               {showPassword ? (
-                <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors" />
               ) : (
-                <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors" />
               )}
             </button>
           </div>
@@ -143,7 +144,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Lock className="h-5 w-5 text-gray-400" />
             </div>
-            <input
+            <Input
               type={showConfirmPassword ? "text" : "password"}
               name="confirmPassword"
               placeholder="Confirm Password"
@@ -158,9 +159,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
               className="absolute inset-y-0 right-0 pr-3 flex items-center"
             >
               {showConfirmPassword ? (
-                <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors" />
               ) : (
-                <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors" />
               )}
             </button>
           </div>
@@ -180,9 +181,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
               "Sign Up"
             )}
           </Button>
-
-        
         </form>
+
+        {/* Switch to Login */}
         <div className="mt-6 text-center text-gray-500 text-sm">
           Already have an account?{" "}
           <button
