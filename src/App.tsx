@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { Button } from "./components/ui/button";
+import { Input } from "./components/ui/input";
 
 interface Data {
   id : number,
@@ -30,7 +32,8 @@ function App() {
           <p>{user.name}</p>
         </div>
       ))}
-      <button onClick={handleClick}>{count}</button>
+      <Input> </Input>
+      <Button onClick={handleClick} variant='destructive'>Hello Click me{count}</Button>
     </div>
   );
 }
