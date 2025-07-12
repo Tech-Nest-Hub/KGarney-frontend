@@ -67,15 +67,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="text-right mb-4">
-            <span className="text-gray-500 text-sm">Already a member? </span>
-            <button
-              onClick={onSwitchToLogin}
-              className="text-purple-600 hover:text-purple-700 font-semibold text-sm transition-colors"
-            >
-              Login now
-            </button>
-          </div>
+         
 
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Create Account!</h1>
           <p className="text-gray-600">Join us and start your journey</p>
@@ -217,6 +209,15 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
             </div>
           </div>
         </form>
+        <div className="mt-6 text-center text-gray-500 text-sm">
+          Already have an account?{" "}
+          <button
+            onClick={onSwitchToLogin}
+            className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
+          >
+            Login now
+          </button>
+        </div>
       </div>
     </div>
   )

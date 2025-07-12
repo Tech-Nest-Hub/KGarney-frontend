@@ -50,16 +50,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onSwitchToRegister }) 
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="text-right mb-4">
-            <span className="text-gray-500 text-sm">Not a member? </span>
-            <button
-              onClick={onSwitchToRegister}
-              className="text-purple-600 hover:text-purple-700 font-semibold text-sm transition-colors"
-            >
-              Register now
-            </button>
-          </div>
-
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Hello Again!</h1>
           <p className="text-gray-600">Welcome back you've been missed</p>
         </div>
@@ -164,12 +154,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onSwitchToRegister }) 
             </div>
           </div>
         </form>
-
-        {/* Demo Credentials */}
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-          <p className="text-blue-800 text-sm font-medium mb-2">Demo Credentials:</p>
-          <p className="text-blue-700 text-xs">Email: demo@example.com</p>
-          <p className="text-blue-700 text-xs">Password: password</p>
+        <div className="mt-6 text-center text-gray-500 text-sm">
+          Don't have an account?{" "}
+          <button
+            onClick={onSwitchToRegister}
+            className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
+          >
+            Register now
+          </button>
         </div>
       </div>
     </div>
