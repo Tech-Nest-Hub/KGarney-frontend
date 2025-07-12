@@ -1,8 +1,11 @@
+import AuthContainer from "./features/auth/components/AuthContainer"
 
 const App = () => {
   return (
     <div>
-      <h1>Hello World</h1>
+      <div className="App">
+        <AuthContainer />
+      </div>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 // src/api.ts
+import type { LoginFormData,AuthResponse,RegisterFormData} from '@/features/auth/schema/schema';
 import axios from 'axios';
 
 const api = axios.create({
@@ -29,5 +30,34 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export const authAPI = {
+  login: async (data: LoginFormData): Promise<AuthResponse> => {
+    try {
+      const response = await api.post("/auth/login", data)
+      return response.data
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || "Login failed")
+    }
+  },
+
+  register: async (data: RegisterFormData): Promise<AuthResponse> => {
+    try {
+      const response = await api.post("/auth/register", data)
+      return response.data
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || "Registration failed")
+    }
+  },
+
+  logout: async (): Promise<void> => {
+    try {
+      await api.post("/auth/logout")
+      localStorage.removeItem("token")
+    } catch (error) {
+      console.error("Logout error:", error)
+    }
+  },
+}
 
 export default api;
