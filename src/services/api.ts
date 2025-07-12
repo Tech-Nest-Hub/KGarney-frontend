@@ -2,8 +2,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api', // <-- you can change this later if needed
+  baseURL: import.meta.env.VITE_API_BASE_URL, 
   withCredentials: true, // enable if using cookies/sessions
+  timeout: 10000, // optional timeout for requests
 });
 
 // 🔐 Attach token to all requests if available
