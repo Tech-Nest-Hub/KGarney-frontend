@@ -5,6 +5,8 @@ import { useState } from "react"
 import { Eye, EyeOff, Mail, Lock, Loader2 } from "lucide-react"
 import type { LoginFormData } from "../schema/schema"
 import { authAPI } from "@/services/api"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
 
 interface LoginFormProps {
@@ -64,7 +66,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onSwitchToRegister }) 
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Mail className="h-5 w-5 text-gray-400" />
             </div>
-            <input
+            <Input
               type="email"
               name="email"
               placeholder="Enter username"
@@ -76,11 +78,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onSwitchToRegister }) 
           </div>
 
           {/* Password Input */}
-          <div className="relative">
+          <div className="relative flex items-center mx-10">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Lock className="h-5 w-5 text-gray-400" />
             </div>
-            <input
+            <Input
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Password"
@@ -110,7 +112,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onSwitchToRegister }) 
           </div>
 
           {/* Sign In Button */}
-          <button
+          <Button
             type="submit"
             disabled={isLoading}
             className="w-full bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-600 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
@@ -123,36 +125,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onSwitchToRegister }) 
             ) : (
               "Sign In"
             )}
-          </button>
+          </Button>
 
-          {/* Social Login */}
-          <div className="mt-8">
-            <div className="text-center text-gray-500 text-sm mb-4">Or continue with</div>
-            <div className="flex justify-center space-x-4">
-              <button
-                type="button"
-                className="w-12 h-12 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm"
-              >
-                <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                  G
-                </div>
-              </button>
-              <button
-                type="button"
-                className="w-12 h-12 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm"
-              >
-                <div className="w-6 h-6 bg-black rounded flex items-center justify-center text-white text-xs font-bold"></div>
-              </button>
-              <button
-                type="button"
-                className="w-12 h-12 bg-white border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm"
-              >
-                <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center text-white text-xs font-bold">
-                  f
-                </div>
-              </button>
-            </div>
-          </div>
+         
         </form>
         <div className="mt-6 text-center text-gray-500 text-sm">
           Don't have an account?{" "}
