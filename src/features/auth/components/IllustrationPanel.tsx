@@ -18,7 +18,7 @@ const IllustrationPanel: React.FC<IllustrationPanelProps> = ({ authMode }) => {
 
         
         {/* 3D Character illustration placeholder */}
-       
+        
 
         {/* Text content */}
         <div className="space-y-4">

@@ -25,6 +25,7 @@ const AuthContainer: React.FC = () => {
     localStorage.setItem("token", token)
     console.log("Authentication successful!", token)
     // Here you would typically redirect to dashboard
+    
   }
 
   return (
