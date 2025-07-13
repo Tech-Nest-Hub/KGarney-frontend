@@ -1,15 +1,32 @@
-"use client"
-
-import type React from "react"
-import { useState } from "react"
-import type { AuthMode } from "../types/types"
+import React, { useEffect, useState } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
 import LoginForm from "../pages/LoginPage"
 import RegisterForm from "../pages/RegisterPage"
 import IllustrationPanel from "./IllustrationPanel"
+import type { AuthMode } from "../types/types"
 
 const AuthContainer: React.FC = () => {
-  const [authMode, setAuthMode] = useState<AuthMode>("login")
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const pathToMode = (path: string): AuthMode => {
+    if (path === "/register") return "register"
+    return "login"
+  }
+
+  const [authMode, setAuthMode] = useState<AuthMode>(pathToMode(location.pathname))
   const [isTransitioning, setIsTransitioning] = useState(false)
+
+  useEffect(() => {
+    const mode = pathToMode(location.pathname)
+    if (mode !== authMode) {
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setAuthMode(mode)
+        setIsTransitioning(false)
+      }, 150)
+    }
+  }, [location.pathname])
 
   const handleModeChange = (newMode: AuthMode) => {
     if (newMode === authMode) return
@@ -18,14 +35,19 @@ const AuthContainer: React.FC = () => {
     setTimeout(() => {
       setAuthMode(newMode)
       setIsTransitioning(false)
+      navigate(newMode === "login" ? "/login" : "/register", { replace: true })
     }, 150)
   }
 
   const handleAuthSuccess = (token: string) => {
     localStorage.setItem("token", token)
     console.log("Authentication successful!", token)
-    // Here you would typically redirect to dashboard
-    
+
+    if (authMode === "register") {
+      navigate("/login", { replace: true })
+    } else {
+      navigate("/dashboard", { replace: true })
+    }
   }
 
   return (
@@ -46,9 +68,15 @@ const AuthContainer: React.FC = () => {
             }`}
           >
             {authMode === "login" ? (
-              <LoginForm onSuccess={handleAuthSuccess} onSwitchToRegister={() => handleModeChange("register")} />
+              <LoginForm
+                onSuccess={handleAuthSuccess}
+                onSwitchToRegister={() => handleModeChange("register")}
+              />
             ) : (
-              <RegisterForm onSuccess={handleAuthSuccess} onSwitchToLogin={() => handleModeChange("login")} />
+              <RegisterForm
+                onSuccess={handleAuthSuccess}
+                onSwitchToLogin={() => handleModeChange("login")}
+              />
             )}
           </div>
         </div>
