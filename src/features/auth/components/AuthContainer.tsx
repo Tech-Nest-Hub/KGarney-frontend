@@ -1,15 +1,32 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
 import type { AuthMode } from "../types/types"
 import LoginForm from "../pages/LoginPage"
 import RegisterForm from "../pages/RegisterPage"
 import IllustrationPanel from "./IllustrationPanel"
 
 const AuthContainer: React.FC = () => {
+
+  const navigate = useNavigate()
+  const location = useLocation()
+
+   const getAuthModeFromPath = (): AuthMode => {
+    if (location.pathname === "/register") return "register"
+    return "login" // default to login for anything else
+  }
+
   const [authMode, setAuthMode] = useState<AuthMode>("login")
   const [isTransitioning, setIsTransitioning] = useState(false)
+
+    useEffect(() => {
+    const mode = getAuthModeFromPath()
+    if (mode !== authMode) {
+      setAuthMode(mode)
+    }
+  }, [location.pathname])
 
   const handleModeChange = (newMode: AuthMode) => {
     if (newMode === authMode) return
@@ -18,6 +35,7 @@ const AuthContainer: React.FC = () => {
     setTimeout(() => {
       setAuthMode(newMode)
       setIsTransitioning(false)
+         navigate(newMode === "login" ? "/login" : "/register", { replace: true })
     }, 150)
   }
 
